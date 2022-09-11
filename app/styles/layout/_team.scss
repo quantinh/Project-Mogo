@@ -1,0 +1,79 @@
+.team {
+    background-color: white;
+    padding: 10rem 0;
+    --image-height: 47rem;
+    &-list {
+        // Cách 1: làm flexbox 
+        // @include flexBox(stretch, space-between);
+        // Cách 2: css grid 
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 3rem;
+    }
+    &-item {
+        width: calc((100%/3)-2rem);
+        // width: 330px;
+    }
+    &-image {
+        @include size(100%, var(--image-height));
+        object-fit: cover;
+    }
+    &-info {
+        padding: 3rem 1.5rem;
+        text-align: center;
+        height: calc(100% - var(--image-height)); /* Tính chiều cao khi ảnh quá cao so với còn lại */
+        @include flexBox(center, space-between, column); /*Chỉnh nếu tên dài vẫn cùng chiều cao */
+    }
+    &-name {
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        line-height: 1.4;
+        @include textClamp(1);
+    }
+    &-position {
+        font-size: 1.5rem;
+        font-weight: 300;
+        font-style: italic;   
+        color: $text-color;
+    }
+    &-social {
+        @include flexBox(center, center);
+        // display: none;
+    }
+    &-social-item:not(:first-child) {
+        border-left: 1px solid $primary-color;
+    }
+    &-social-link {
+        @include flexBox(center, center);
+        @include size(6rem);
+        @include bg($secondary-color);
+        color: $primary-color;
+        font-size: 2rem;
+        transition: all 0.2s linear;
+        &:hover {
+            color: white;
+            @include bg($primary-color);
+        }
+    }
+    @include maxWidth(1023px) {
+        padding: 5rem 0;
+        &-list {
+            @include touchSlider(55%);
+        }
+    }
+    @include maxWidth(767px) {
+        --image-height: 40rem;
+        &-list {
+            @include touchSlider(90%);
+        }
+    }
+}
+.brand {
+    padding: 8rem 0;
+    @include bg($gray-color);
+    @include maxWidth(767px) {
+        padding: 3rem 0;
+    }
+}
+@include hoverEffect(".team-main", ".team-content");

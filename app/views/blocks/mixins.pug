@@ -1,0 +1,129 @@
+//- Viết mixin cho các thẻ li 
+mixin ListItem(title="This is value default title", caption)
+	li.list-item 
+		h2.list-heading= title 
+		//- Nếu có giá trị cho biến caption thì hiển thị 
+		if caption
+			span.list-caption= caption
+		//- Nếu có khối bên trong thì cho hiển thị 
+		if block 
+			block
+//- Viết mixin cho các thẻ html li a nếu không truyền mặc định là dấu thăng
+mixin menuLink(title, href = "#")
+	li.header-menu-item 
+		a.header-menu-link(href=href)= title
+//- //Viết mixin cho giao diện header bottom
+mixin headerBottomItem(number, title)
+	.header-bottom-item 
+		span.header-bottom-number= number
+		span.header-bottom-text= title
+//- Viết mixin header phần tiêu đề mô tả 
+mixin blockBox(caption, title, desc)
+	.block-box
+		h3.block-box-caption= caption
+		h2.block-box-heading= title 
+		//- Nếu có mô tả thì hiển thị bên dưới ko thì không hiển thị
+		if desc 
+			p.block-box-desc= desc 
+//- tạo các tham số truyền vào là 1 object -data = {src:"", title: "", iconClass:"", alt:""}
+//- Viết mixin about phần ảnh truyền biến chọn dấu thăng
+mixin aboutItem(data)
+	.about-item 
+		img.about-image(src= data.src)
+		.about-content 
+			i.about-icon(class= data.iconClass) 
+			span.about-title= data.title
+//- Viết mixin service icon mô tả
+mixin serviceItem(src, title, desc)
+	.service-item
+		img.service-item-icon(src= src)
+		.service-item-info 
+			h3.service-item-title= title 
+			p.service-item-desc= desc
+//- Viết mixin wedo item các phần tử 
+mixin wedoItem(src, title, desc, active="")
+	.wedo-item(class= active)
+		.wedo-item-header 
+			img(src= src).wedo-item-icon
+			h1.wedo-item-title= title 
+			i.fa.fa-angle-down.wedo-item-arrow  
+		.wedo-item-content  
+			.wedo-item-text= desc
+//- Viết mixin link các social
+mixin teamSocial(facebook = "#", twitter = "#", pinterest = "#", instagram = "#") 
+	ul.team-social 
+		li.team-social-item
+			a.team-social-link(href= facebook) 
+				i.fab.fa-facebook-f
+		li.team-social-item
+			a.team-social-link(href= twitter) 
+				i.fab.fa-twitter
+		li.team-social-item
+			a.team-social-link(href= pinterest) 
+				i.fab.fa-pinterest
+		li.team-social-item
+			a.team-social-link(href= instagram) 
+				i.fab.fa-instagram
+//- Viết mixin team item các phần tử sử dụng if cho truong hợp này để có thể tùy biến link cho mỗi phần tử ảnh
+mixin teamItem(src, name, position) 
+	.team-item
+		.team-main 
+			img(src= src).team-image
+			.team-content 
+				if block 
+					block 
+		.team-info 
+			h3.team-name= name 
+			span.team-position= position
+//- Viết mixin work-item cho các phần tử sử dụng 
+mixin workItem(src = "../images/img-work1.png", icon = "fa fa-home", title = "Photographer Super", full = "", desc = "lorem ipsum dolor sit")
+	.work-item(class= full)
+		img.work-image(src= src)
+		.work-content 
+			i.work-icon(class = icon) 
+			h3.work-title= title
+			span.work-desc.text.text--light= desc
+//- Viết mixin people-item cho các phần tử sử dụng 
+mixin peopleItem(src = "../images/img-people1.png", name = "Matthew Dix", job = "Graphic design", desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.")
+	li.people-item 
+		img.people-avatar(src= src)
+		.people-info 
+			h3.people-name= name
+			span.people-job.text.text--light= job
+			p.people-desc.text= desc
+//- Viết mixin story-item cho các phần tử sử dụng 
+mixin storyItem(src = "../images/img-blog1.png", dateNumber = 15, dateText = "Jan", title = "Lorem ipsum dolor sit amet", desc = "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", views = 542, comments = 17)
+	li.story-item 
+		.story-media 
+			img.story-image(src= src)
+			.story-date
+				span.story-date-number= dateNumber
+				span.story-date-text.text.text--light= dateText
+		h3.story-title= title 
+		.story-desc.text 
+			p.story-desc-inner= desc
+		.story-meta 
+			.story-meta-item 
+				i.fa.fa-eye.story-meta-icon 
+				span.story-meta-number.text= views
+			.story-meta-item 
+				i.fa.fa-eye.story-meta-icon 
+				span.story-meta-number.text= comments
+//- Viết mixin footer-blog cho các phần tử  
+mixin footerBlog(href = "#", src = "../images/img-blogs1.png", title = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. ", date = "Jan 9, 2016")
+	a(href= href).footer-blog
+		img.footer-blog-image(src= src)
+		.footer-blog-info 
+			h4.footer-blog-title= title 
+			span.footer-blog-date.text.text--light= date
+//- Viết mixin quoteItem cho các phần tử
+mixin quoteItem(src = "../images/img-quote.png", type = false, desc = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptate deserunt qui ullam similique illum id amet odio! Et sunt reprehenderit est officiis, facere aperiam officia inventore mollitia veritatis quia hic quis ullam repudiandae itaque assumenda numquam consequatur sed in.", author = "Jon Doe" ) 
+	.quote-item 
+		if type == false 
+			.quote-icon 
+				img(src= src)
+		else 
+			img(src= src).quote-image 
+		.quote-info 
+			p.quote-desc= desc
+			span.quote-author= author 

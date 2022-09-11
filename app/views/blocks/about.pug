@@ -1,0 +1,26 @@
+//- Định nghĩa nội dung với class about cho about.pug 
+section.about
+    .container 
+        +blockBox("What we do", "Story about us", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ")
+        .about-list 
+            +aboutItem(
+                {
+                    src: "images/img-about1.png", 
+                    title: "Super Team", 
+                    iconClass: "fa fa-users"
+                }
+            )
+            +aboutItem(
+                {
+                    src: "images/img-about2.png", 
+                    title: "Super Team", 
+                    iconClass: "fa fa-users"
+                }
+            )
+            +aboutItem(
+                {
+                    src: "images/img-about3.png", 
+                    title: "Super Team", 
+                    iconClass: "fa fa-users"
+                }
+            )
